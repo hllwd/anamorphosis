@@ -4,7 +4,15 @@
   "description": "",
   "main": "anamorphosis.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf public/js && rm -rf public/css",
+    "gulp": "node node_modules/gulp/bin/gulp.js",
+    "prebuild-local": "npm run clean && npm install && npm run gulp",
+    "build-local": "BUILD_DEV=1 node node_modules/webpack/bin/webpack.js --watch --config ./.webpack/config-local.js",
+    "prebuild": "npm run clean && npm install && npm run gulp",
+    "build": "node node_modules/webpack/bin/webpack.js -- config ./.webpack/config-prod.js",
+    "postbuild": "git add public/*",
+    "build-server": "npm install --production"
   },
   "repository": {
     "type": "git",
@@ -23,9 +31,14 @@
     "method-override": "^2.3.0"
   },
   "devDependencies": {
+    "css-loader": "^0.9.1",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
     "gulp-uglify": "^1.1.0",
-    "gulp-watch": "^4.2.0"
+    "gulp-watch": "^4.2.0",
+    "lodash": "^3.5.0",
+    "sass-loader": "^0.5.0",
+    "style-loader": "^0.8.3",
+    "webpack": "^1.7.3"
   }
 }

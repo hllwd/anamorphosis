@@ -5,25 +5,21 @@ var gulp = require('gulp');
 
 // include plugins
 var concat = require('gulp-concat'),
-    uglify = require('gulp-uglify'),
-    watch = require('gulp-watch');
+    uglify = require('gulp-uglify');
 
-gulp.task('build', function () {
+gulp.task('build-vendors', function () {
 
     var dependencies = [
         'other_modules/three/three.min.js',
-        'other_modules/detector/Detector.js',
-        'web_modules/main.js'
+        'other_modules/detector/Detector.js'
     ];
 
-    watch('web_modules/*.js', function(){
-        gulp.src(dependencies)
-            .pipe(concat('main.min.js'))
-            .pipe(uglify())
-            .pipe(gulp.dest('public/js'));
-    });
+    gulp.src(dependencies)
+        .pipe(concat('vendors.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('public/js'));
 
 });
 
 // default task
-gulp.task('default', ['build']);
+gulp.task('default', ['build-vendors']);
