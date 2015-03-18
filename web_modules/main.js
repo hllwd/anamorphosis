@@ -47,17 +47,8 @@
         axes = new THREE.AxisHelper(100);
         scene.add(axes);
 
-        // sky
-        // ! make sure the camera's far is big enough to render the sky
-        skyBoxGeometry = new THREE.BoxGeometry(10000, 10000, 10000);
-        skyBoxMaterial = new THREE.MeshBasicMaterial({
-            color: 0xffffff,
-            side: THREE.BackSide
-        });
-        skyBox = new THREE.Mesh(skyBoxGeometry, skyBoxMaterial);
-        scene.add(skyBox);
-
-    }
+        render();
+    };
 
     function setupLight(){
         // lights
@@ -86,6 +77,11 @@
 
         scene.add(hemiLight);
         scene.add(dirLight);
+    }
+
+    function render() {
+        requestAnimationFrame( render );
+        renderer.render( scene, camera );
     }
 
     setup();
