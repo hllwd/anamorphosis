@@ -6,6 +6,8 @@ var Detector = require('detector');
 var scene = require('objects/scene');
 var camera = require('objects/camera');
 var renderer = require('objects/renderer');
+var control = require('objects/control');
+var square = require('mesh/square');
 
 function setup() {
     var container;
@@ -14,7 +16,7 @@ function setup() {
     // add the camera to the scene at the default position (0,0,0)
     scene.add(camera);
     // so pull it back
-    camera.position.set(-600, 600, -600);
+    camera.position.set(600, 0, 0);
     // and set the angle towards the scene origin
     camera.lookAt(scene.position);
 
@@ -26,6 +28,9 @@ function setup() {
     // axes
     axes = new THREE.AxisHelper(100);
     scene.add(axes);
+
+    // square
+    scene.add(square);
 };
 
 module.exports = setup;
