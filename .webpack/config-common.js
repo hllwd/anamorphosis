@@ -15,7 +15,8 @@ module.exports = {
     },
     externals: {
         'detector': 'Detector',
-        'three': 'THREE'
+        'three': 'THREE',
+        'hammer': 'Hammer'
     },
     resolve: {
         root: [
