@@ -10,7 +10,6 @@ var concat = require('gulp-concat'),
 gulp.task('build-vendors', function () {
 
     var dependencies = [
-        'node_modules/hammerjs/hammer.js',
         'other_modules/three/three.min.js',
         'other_modules/detector/Detector.js',
         'other_modules/orbit/OrbitControls.js'
