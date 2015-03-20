@@ -25,8 +25,8 @@ function setup() {
     container.appendChild(renderer.domElement);
 
     // axes
-    axes = new THREE.AxisHelper(100);
-    scene.add(axes);
+    //axes = new THREE.AxisHelper(100);
+    //scene.add(axes);
 
     // square
     scene.add(square);

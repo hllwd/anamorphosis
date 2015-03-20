@@ -28,7 +28,7 @@ document.getElementsByTagName('body')[0].addEventListener('mouseup', function (e
             var raycaster = new THREE.Raycaster();
             raycaster.setFromCamera(p, camera);
 
-            var newVec = raycaster.ray.at(450 + (Math.random() * 300));
+            var newVec = raycaster.ray.at(400 + (Math.random() * 500));
             newVertices.push(newVec);
         });
 
