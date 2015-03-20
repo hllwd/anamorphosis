@@ -18,23 +18,25 @@ animate();
 
 document.getElementsByTagName('body')[0].addEventListener('mouseup', function (ev) {
 
-    var newVertices = [];
+    setTimeout(function(){
+        var newVertices = [];
 
-    square.geometry.vertices.forEach(function (v, i) {
-        // get projected point
-        // @see http://stackoverflow.com/questions/11534000/three-js-converting-3d-position-to-2d-screen-position
-        var p = v.project(camera);
-        // raycaster
-        var raycaster = new THREE.Raycaster();
-        raycaster.setFromCamera(p, camera);
+        square.geometry.vertices.forEach(function (v, i) {
+            // get projected point
+            // @see http://stackoverflow.com/questions/11534000/three-js-converting-3d-position-to-2d-screen-position
+            var p = v.project(camera);
+            var raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(p, camera);
 
-        var newVec = raycaster.ray.at(300 + (Math.random() * 600));
-        console.log(newVec);
-        newVertices.push(newVec);
-    });
+            var newVec = raycaster.ray.at(450 + (Math.random() * 300));
+            newVertices.push(newVec);
+        });
 
-    // http://stackoverflow.com/questions/15384078/updating-a-geometry-inside-a-mesh-does-nothing
-    square.geometry.vertices = newVertices;
-    square.geometry.verticesNeedUpdate = true;
+        // http://stackoverflow.com/questions/15384078/updating-a-geometry-inside-a-mesh-does-nothing
+        square.geometry.vertices = newVertices;
+        square.geometry.verticesNeedUpdate = true;
+    }, 100);
+
+
 
 });
