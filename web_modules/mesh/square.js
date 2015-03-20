@@ -10,10 +10,6 @@ var material = new THREE.MeshBasicMaterial({
     color: 0xffffff,
     side: THREE.DoubleSide
 });
-var outlineMaterial = new THREE.MeshBasicMaterial({
-    color: 0x00ff00,
-    side: THREE.BackSide
-});
 
 var y,z;
 var step = 100;
