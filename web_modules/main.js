@@ -6,37 +6,33 @@ var THREE = require('three');
 
 var setup = require('setup/setup');
 var setupLight = require('setup/setup-light');
-
 var animate = require('animate/animate');
-
 var camera = require('objects/camera');
-
 var size = require('util/size');
+var square = require('mesh/square');
+var scene = require('objects/scene');
 
 setup();
 setupLight();
 animate();
 
 document.getElementsByTagName('body')[0].addEventListener('mouseup', function (ev) {
-    // @see http://stackoverflow.com/questions/11534000/three-js-converting-3d-position-to-2d-screen-position
-    var p = new THREE.Vector3(0, 100, 100);
 
-    // v is already normalized in Normalized Device Coordinates
-    // vector needs to be normalized
-    // http://threejs.org/docs/#Reference/Core/Raycaster
-    var v = p.project(camera);
+    var newVertices = [];
 
-    // if you want to retrive reel coords
-    //v.x = (v.x + 1) / 2 * size.w;
-    //v.y = -(v.y - 1) / 2 * size.h;
+    square.geometry.vertices.forEach(function (v, i) {
+        // get projected point
+        // @see http://stackoverflow.com/questions/11534000/three-js-converting-3d-position-to-2d-screen-position
+        var p = v.project(camera);
+        // raycaster
+        var raycaster = new THREE.Raycaster();
+        raycaster.setFromCamera(p, camera);
+        newVertices.push(raycaster.ray.at(400 + (Math.random() * 400)));
+    });
 
-    // ??? @see https://github.com/mrdoob/three.js/issues/5587
-    //v.z = .5;
-
-    var raycaster = new THREE.Raycaster();
-    raycaster.setFromCamera(v, camera );
-    // http://threejs.org/docs/#Reference/Math/Ray
-    console.log(raycaster.ray);
-    console.log(raycaster.ray.at(600));
+    // http://stackoverflow.com/questions/15384078/updating-a-geometry-inside-a-mesh-does-nothing
+    square.geometry.dynamic = true;
+    square.geometry.vertices = newVertices;
+    square.geometry.verticesNeedUpdate = true;
 
 });
