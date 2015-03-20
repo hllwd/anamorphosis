@@ -12,8 +12,7 @@ gulp.task('build-vendors', function () {
     var dependencies = [
         'other_modules/three/three.min.js',
         'other_modules/detector/Detector.js',
-        'other_modules/orbit/OrbitControls.js',
-        'node_modules/lodash/index.js'
+        'other_modules/orbit/OrbitControls.js'
     ];
 
     gulp.src(dependencies)
