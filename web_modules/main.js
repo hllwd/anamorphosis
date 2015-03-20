@@ -27,11 +27,13 @@ document.getElementsByTagName('body')[0].addEventListener('mouseup', function (e
         // raycaster
         var raycaster = new THREE.Raycaster();
         raycaster.setFromCamera(p, camera);
-        newVertices.push(raycaster.ray.at(400 + (Math.random() * 400)));
+
+        var newVec = raycaster.ray.at(300 + (Math.random() * 600));
+        console.log(newVec);
+        newVertices.push(newVec);
     });
 
     // http://stackoverflow.com/questions/15384078/updating-a-geometry-inside-a-mesh-does-nothing
-    square.geometry.dynamic = true;
     square.geometry.vertices = newVertices;
     square.geometry.verticesNeedUpdate = true;
 

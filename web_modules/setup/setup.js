@@ -31,6 +31,7 @@ function setup() {
 
     // square
     scene.add(square);
+
 };
 
 module.exports = setup;

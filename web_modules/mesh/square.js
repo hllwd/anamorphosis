@@ -5,18 +5,21 @@ var THREE = require('three');
 var mesh;
 var geometry = new THREE.Geometry();
 geometry.dynamic = true;
-var material = new THREE.MeshBasicMaterial({
-    color: 0xffffff
-});
 
-material.side = THREE.DoubleSide;
+var material = new THREE.MeshBasicMaterial({
+    color: 0xffffff,
+    side: THREE.DoubleSide
+});
+var outlineMaterial = new THREE.MeshBasicMaterial({
+    color: 0x00ff00,
+    side: THREE.BackSide
+});
 
 var y,z;
 var step = 100;
 
 for(var y = -step; y <= step; y+=step){
     for(var z = -step; z <= step; z+=step){
-        console.log(y,z)
         geometry.vertices.push(
             new THREE.Vector3( 0, y, z )
         );
